@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">School Demo</string>
+  <string name="title">Test</string>
+  <string name="school_level">School Level</string>
+  <string name="class_level">Class Level</string>
+  <string name="th">th</string>
+</resources>
