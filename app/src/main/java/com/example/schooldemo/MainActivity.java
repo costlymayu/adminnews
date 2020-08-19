@@ -2,6 +2,8 @@ package com.example.schooldemo;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -16,9 +19,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.schooldemo.adapter.MyAdapter;
+import com.example.schooldemo.utils.SwipeHelper;
 import com.example.schooldemo.viewmodel.MyListViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sudam Chole on 18/08/20.
@@ -72,8 +77,24 @@ public class MainActivity extends AppCompatActivity {
         recyclerview.setAdapter(adapter);
       }
     });
-    ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-    itemTouchHelper.attachToRecyclerView(recyclerview);
+    SwipeHelper swipeHelper = new SwipeHelper(this, recyclerview) {
+      @Override
+      public void instantiateUnderlayButton(RecyclerView.ViewHolder viewHolder, List<UnderlayButton> underlayButtons) {
+        underlayButtons.add(new SwipeHelper.UnderlayButton(
+          "Delete",
+          0,
+          Color.parseColor("#FF3C30"),
+          new SwipeHelper.UnderlayButtonClickListener() {
+            @Override
+            public void onClick(int pos) {
+              // TODO: onDelete
+            }
+          }
+        ));
+      }
+    };
+
+
   }
   void getData(){
     myListViewModel = ViewModelProviders.of(MainActivity.this).get(MyListViewModel.class);
@@ -87,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
   }
+/*
   ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
 
     @Override
@@ -109,8 +131,9 @@ public class MainActivity extends AppCompatActivity {
     public void onChildDrawOver(Canvas c, RecyclerView recyclerView,
                                 RecyclerView.ViewHolder viewHolder, float dX, float dY,
                                 int actionState, boolean isCurrentlyActive) {
-      final View foregroundView = ((RecyclerView.ViewHolder) viewHolder).itemView;
-      getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY,
+      View itemView = viewHolder.itemView;
+      int backgroundCornerOffset = 20;
+      getDefaultUIUtil().onDrawOver(c, recyclerView, itemView, dX, dY,
         actionState, isCurrentlyActive);
     }
 
@@ -130,4 +153,5 @@ public class MainActivity extends AppCompatActivity {
         actionState, isCurrentlyActive);
     }
   };
+*/
 }
