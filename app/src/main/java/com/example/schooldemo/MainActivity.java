@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
       }
     });
     initializeListeners();
+
+    //code for redundant
 /*
     SwipeHelper swipeHelper = new SwipeHelper(this, recyclerview) {
       @Override
@@ -115,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
   }
+  //Code for redundant
 /*
   ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
 
