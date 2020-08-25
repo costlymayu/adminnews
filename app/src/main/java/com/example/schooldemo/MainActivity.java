@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sudam Chole on 18/08/20.
+ * Created by mayuri k on 18/08/20.
  */
 public class MainActivity extends AppCompatActivity {
   private RecyclerView recyclerview;
